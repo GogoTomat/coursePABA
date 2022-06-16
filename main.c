@@ -125,6 +125,9 @@ void decodeEng(char message[250]){
              if(message[i] == ' '){
                 printf("    ");
             }
+            else if (message[i] == '!'){
+                exit(0);
+            }
             else
                 for (int j = 0; j < 36; j++)
                     if(message[i] == dictionaryEng[j].symbol) {
@@ -137,6 +140,7 @@ void decodeEng(char message[250]){
 }
 
 void decodeRus(char message[250]){
+    printf("Press '!' to quit the program");
     int i = 0;
     if (message == NULL){
         return;
@@ -145,6 +149,9 @@ void decodeRus(char message[250]){
         for(i = 0; message[i] != '\0'; i++) {
             if(message[i] == ' ')
                 printf("    ");
+            else if (message[i] == '!'){
+                exit(0);
+            }
             else
                 for (int j = 0; j < 36; j++)
                     if(message[i] == dictionaryRus[j].symbol) {
@@ -161,12 +168,16 @@ void encodeEng(char message[250])
     int i = 0;
     char buff[7] = {0};
     int iBuff = 0;
-
+    printf("Press '!' to quit the program");
     while (printf("Enter text:\n"), fflush(stdin), fgets(message, 250, stdin) != NULL) {
         for (i = 0; i < 250; i++) {
             if (i && message[i-1] == ' ' && message[i] == ' ') {
                 printf(" ");
-            } else if (message[i] == ' ' || message[i] == '\n' || message[i] == '\0') {
+            } 
+            else if (message[i] == '!'){
+                exit(0);
+            }
+            else if (message[i] == ' ' || message[i] == '\n' || message[i] == '\0') {
                 if (message[i] == '\0')
                     break;
                 char c = getOneLetterEng(buff);
@@ -191,12 +202,17 @@ void encodeRus(char message[250])
     int i = 0;
     char buff[7] = {0};
     int iBuff = 0;
+    printf("Press '!' to quit the program");
 
     while (printf("Enter text:\n"), fflush(stdin), fgets(message, 250, stdin) != NULL) {
         for (i = 0; i < 250; i++) {
             if (i && message[i-1] == ' ' && message[i] == ' ') {
                 printf(" ");
-            } else if (message[i] == ' ' || message[i] == '\n' || message[i] == '\0') {
+            } 
+            else if (message[i] == '!'){
+                exit(0);
+            }
+            else if (message[i] == ' ' || message[i] == '\n' || message[i] == '\0') {
                 if (message[i] == '\0')
                     break;
                 char c = getOneLetterRus(buff);
@@ -224,7 +240,7 @@ int main() {
     printf("1 - Translate from English to Morse Code\n");
     printf("2 - Translate from Morse Code to English\n");
     printf("3 - Translate from Russian to Morse Code\n");
-    printf("3 - Translate from Morse Code to Russian\n");
+    printf("4 - Translate from Morse Code to Russian\n");
     int input;
     scanf( "%d", &input);
     switch (input) {
